@@ -13,10 +13,13 @@ class PCB {
 	// A unique identifier for the process
 	int ID;
 
+	// The priority of the process (smaller values indicate greater priority)
+	int priority;
+
 	// The current state of the process
 	PCBState state;
 
 	// Instantiate a new process with the supplied ID
-	PCB(int ID);
+	PCB(int ID, int priority);
 
 };
