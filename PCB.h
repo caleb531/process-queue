@@ -23,7 +23,7 @@ class PCB {
 
 	public:
 
-		// Instantiate a new process with the supplied ID
+		PCB();
 		PCB(int ID, int priority);
 
 };
