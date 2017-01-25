@@ -7,19 +7,23 @@
 
 class PCB {
 
-	// An enum representing the state of the process in a memory-efficient way
-	enum PCBState { NEW, READY, RUNNING, WAITING, TERMINATED };
+	protected:
 
-	// A unique identifier for the process
-	int ID;
+		// An enum representing the state of the process in a memory-efficient way
+		enum PCBState { NEW, READY, RUNNING, WAITING, TERMINATED };
 
-	// The priority of the process (smaller values indicate greater priority)
-	int priority;
+		// A unique identifier for the process
+		int ID;
 
-	// The current state of the process
-	PCBState state;
+		// The priority of the process (smaller values indicate greater priority)
+		int priority;
 
-	// Instantiate a new process with the supplied ID
-	PCB(int ID, int priority);
+		// The current state of the process
+		PCBState state;
+
+	public:
+
+		// Instantiate a new process with the supplied ID
+		PCB(int ID, int priority);
 
 };
