@@ -24,4 +24,7 @@ class PCBTable {
 
 		PCBTable();
 
+		// Add the supplied PCB instance to the table
+		void add(PCB);
+
 };

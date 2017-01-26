@@ -10,7 +10,8 @@ using namespace std;
 int main() {
 
 	PCB pcb1 = PCB(1, 25);
-	PCBTable table();
+	PCBTable table;
+	table.add(pcb1);
 
 	return 0;
 
