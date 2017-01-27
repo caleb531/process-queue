@@ -12,6 +12,7 @@ int main() {
 	PCB pcb1 = PCB(1, 25);
 	PCBTable table;
 	table.add(pcb1);
+	cout << pcb1.getPriority() << endl;
 
 	return 0;
 

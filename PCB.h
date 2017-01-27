@@ -26,4 +26,6 @@ class PCB {
 		PCB();
 		PCB(int ID, int priority);
 
+		int getPriority();
+
 };

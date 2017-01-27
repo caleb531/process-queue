@@ -21,3 +21,8 @@ PCB::PCB(int ID, int priority) {
 	this->priority = priority;
 	this->state = PCB::NEW;
 }
+
+// Retrieve the current priority of the process
+int PCB::getPriority() {
+	return priority;
+}
