@@ -14,6 +14,8 @@ class ReadyQueue {
 
     //Minimum heap of all ready processes
     PCB* heap[MAX_PROCESS_COUNT];
+
+    //Current number of processes in the heap
     int size;
 
     //Various methods to get indexes of parents/children
@@ -21,13 +23,18 @@ class ReadyQueue {
     int getLeftIndex(int i);
     int getRightIndex(int i);
 
+    //Swaps the processes at the indicated indexes
     void swapNodes(int a, int b);
 
     public: 
     ReadyQueue();
 
+    //Insert a PCB pointer to the heap
     void insertProc(PCB* inserted);
+
+    //Remove the pointer pointing the the highest priority process
     PCB* removeHighestProc();
     
+    //Displays the heap in array order
     void displayQueue();
 };

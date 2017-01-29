@@ -1,5 +1,5 @@
 /*
-ReadyQueue implementatio
+ReadyQueue implementation
 Jonathan Tapia
 */
 
@@ -22,9 +22,12 @@ int ReadyQueue::getRightIndex(int i){
 }
 
 void ReadyQueue::swapNodes(int a, int b){
-    PCB* temp = heap[a];
-    heap[a] = heap[b];
-    heap[b] = temp;
+    //Swap only if both indexes are legal
+    if(a < size && b < size){
+        PCB* temp = heap[a];
+        heap[a] = heap[b];
+        heap[b] = temp;
+    }
 }
 
 ReadyQueue::ReadyQueue(){
