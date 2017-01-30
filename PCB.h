@@ -9,13 +9,15 @@ class PCB {
 
 	protected:
 
-		// An enum representing the state of the process in a memory-efficient way
+		// An enum representing the state of the process in a memory-efficient
+		// way
 		enum PCBState { NEW, READY, RUNNING, WAITING, TERMINATED };
 
 		// A unique identifier for the process
 		int ID;
 
-		// The priority of the process (smaller values indicate greater priority)
+		// The priority of the process (smaller values indicate greater
+		// priority)
 		int priority;
 
 		// The current state of the process
@@ -26,9 +28,14 @@ class PCB {
 		PCB();
 		PCB(int ID, int priority);
 
+		// Retrieve the constant ID of the process
 		int getID();
+		// Retrieve the current priority of the process
 		int getPriority();
+		// Indicate the process is now ready (meaning it has been enqueued)
 		void markAsReady();
+		// Indicate the process is currently running (meaning it has been
+		// dequeued)
 		void markAsRunning();
 
 };

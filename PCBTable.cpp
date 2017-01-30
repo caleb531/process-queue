@@ -11,7 +11,6 @@ PCBTable::PCBTable() {
 	process_count = 0;
 }
 
-// Add the supplied PCB instance to the table
 void PCBTable::insertProc(PCB* added) {
 	// Only add process if there is space in the table
 	if ((process_count + 1) < MAX_PROCESS_COUNT) {
@@ -20,12 +19,10 @@ void PCBTable::insertProc(PCB* added) {
 	}
 }
 
-// Retrieve a reference to a PCB instance in the table by its index
 PCB* PCBTable::getPCB(int i) {
 	return processes[i];
 }
 
-// Remove all elements in the PCB table
 void PCBTable::clear() {
 	for (int i = 0; i < process_count; i++) {
 		delete processes[i];

@@ -1,14 +1,13 @@
-/*
-ReadyQueue implementation
-Jonathan Tapia
-*/
+/**
+ * ReadyQueue implementation
+ */
 
 #include <iostream>
 #include "ReadyQueue.h"
 using namespace std;
 
-//Helper methods to compute indexes
-//Starting index is at 0
+// See the header file for comments describing each function's purpose
+
 int ReadyQueue::getParentIndex(int i){
     return (i-1)/2;
 }
@@ -22,7 +21,7 @@ int ReadyQueue::getRightIndex(int i){
 }
 
 void ReadyQueue::swapNodes(int a, int b){
-    //Swap only if both indexes are legal
+    // Swap only if both indexes are legal
     if(a < size && b < size){
         PCB* temp = heap[a];
         heap[a] = heap[b];
@@ -36,7 +35,7 @@ ReadyQueue::ReadyQueue(){
 
 void ReadyQueue::insertProc(PCB* inserted){
     if(size >= MAX_PROCESS_COUNT){
-        //If queue is already full, do nothing
+        // If queue is already full, do nothing
         return;
     }
 
@@ -45,7 +44,7 @@ void ReadyQueue::insertProc(PCB* inserted){
     int i = size;
     size++;
 
-    //Bubble up the new process
+    // Trickle up the new process
     while(i > 0){
         int p = getParentIndex(i);
         if(heap[i]->getPriority() < heap[p]->getPriority()){
@@ -60,47 +59,44 @@ void ReadyQueue::insertProc(PCB* inserted){
 
 PCB* ReadyQueue::removeHighestProc(){
     if(size == 0){
-        //If empty, return pointer pointing to nowhere
+        // If empty, return pointer pointing to nowhere
         return NULL;
     }
 
     PCB* result = heap[0];
 
-    //Replace root with bottom rightmost node
+    // Replace root with bottom rightmost node
     heap[0] = heap[size-1];
     size--;
 
-    //The index that is currently being checked
+    // The current index of the node that is being trickled down
     int currentIndex = 0;
 
-    //Sift the root down
+    // Trickle down the temporary root to its proper position
     while(true){
         int leftChild = getLeftIndex(currentIndex);
         int rightChild = getRightIndex(currentIndex);
         int smallest;
 
-        //Determine the smallest value between currentIndex vs leftChild
-        //If leftChild doesn't exist, smallest is set to currentIndex
+        // Find the smallest of the two child nodes
         if(leftChild < size && heap[currentIndex]->getPriority() > heap[leftChild]->getPriority()){
             smallest = leftChild;
         }
         else{
             smallest = currentIndex;
         }
-
-        //Determine the smallest value between currentIndex/parent(determined before) vs rightChild
-        //If rightChild doesn't exist, smallest is kept as determined before
         if(rightChild < size && heap[smallest]->getPriority() > heap[rightChild]->getPriority()){
             smallest = rightChild;
         }
 
-        //If the smallest was one of the children, swap
+        // Swap the current node with the lowest-priority child
         if(smallest != currentIndex){
             swapNodes(currentIndex, smallest);
             currentIndex = smallest;
         }
         else{
-            //Otherwise the smallest was the current index, or left and right children don't exist, so sifting is done
+            // Otherwise the smallest was the current index, or left and right
+            // children don't exist, so sifting is done
             break;
         }
     }

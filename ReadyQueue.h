@@ -1,7 +1,6 @@
-/*
-ReadyQueue definition
-Jonathan Tapia
-*/
+/**
+ * ReadyQueue definition
+ */
 #pragma once
 #include "PCB.h"
 using namespace std;
@@ -18,23 +17,23 @@ class ReadyQueue {
     //Current number of processes in the heap
     int size;
 
-    //Various methods to get indexes of parents/children
+	// Retrieve the index of node i's parent
     int getParentIndex(int i);
-    int getLeftIndex(int i);
+    // Retrieve the index of node i's left child
+	int getLeftIndex(int i);
+	// Retrieve the index of node i's right child
     int getRightIndex(int i);
 
-    //Swaps the processes at the indicated indexes
+	// Swap the nodes at the given indices
     void swapNodes(int a, int b);
 
     public:
     ReadyQueue();
 
-    //Insert a PCB pointer to the heap
+	// Insert the given PCB instance into the queue
     void insertProc(PCB* inserted);
-
-    //Remove the pointer pointing the the highest priority process
+	// Remove the highest priority process from the queue
     PCB* removeHighestProc();
-
-    //Displays the heap in array order
+	// Display each node in the queue, one node per line, in array-order
     void displayQueue();
 };
