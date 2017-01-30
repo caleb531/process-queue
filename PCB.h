@@ -26,6 +26,9 @@ class PCB {
 		PCB();
 		PCB(int ID, int priority);
 
+		int getID();
 		int getPriority();
+		void markAsReady();
+		void markAsRunning();
 
 };

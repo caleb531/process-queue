@@ -34,13 +34,14 @@ ReadyQueue::ReadyQueue(){
     size = 0;
 }
 
-void ReadyQueue::insertProc(PCB *inserted){
+void ReadyQueue::insertProc(PCB* inserted){
     if(size >= MAX_PROCESS_COUNT){
         //If queue is already full, do nothing
         return;
     }
 
     heap[size] = inserted;
+	inserted->markAsReady();
     int i = size;
     size++;
 
@@ -104,11 +105,12 @@ PCB* ReadyQueue::removeHighestProc(){
         }
     }
 
+	result->markAsRunning();
     return result;
 }
 
 void ReadyQueue::displayQueue(){
     for(int i = 0; i < size; i++){
-        cout <<"Process " << i << " Priority: " << heap[i]->getPriority() << endl;
+        cout <<"Process " << heap[i]->getID() << " Priority " << heap[i]->getPriority() << endl;
     }
 }
