@@ -22,7 +22,22 @@ PCB::PCB(int ID, int priority) {
 	this->state = PCB::NEW;
 }
 
+// Retrieve the constant ID of the process
+int PCB::getID() {
+	return ID;
+}
+
 // Retrieve the current priority of the process
 int PCB::getPriority() {
 	return priority;
+}
+
+// Indicate the process is now ready (meaning it has been enqueued)
+void PCB::markAsReady() {
+	this->state = READY;
+}
+
+// Indicate the process is currently running (meaning it has been dequeued)
+void PCB::markAsRunning() {
+	this->state = RUNNING;
 }

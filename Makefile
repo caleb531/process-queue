@@ -1,7 +1,7 @@
 #!/usr/bin/make
 
 CC = g++
-SRC = PCB.cpp PCBTable.cpp main.cpp
+SRC = PCB.cpp PCBTable.cpp ReadyQueue.cpp main.cpp
 PROG = process-queue.out
 
 # Execute program (the default task when calling `make`)

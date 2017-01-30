@@ -15,7 +15,7 @@ class PCBTable {
 		static const int MAX_PROCESS_COUNT = 20;
 
 		// The ordered list of all running processes in the table
-		PCB processes[MAX_PROCESS_COUNT];
+		PCB* processes[MAX_PROCESS_COUNT];
 
 		// The current number of processes in the PCB table
 		int process_count;
@@ -25,6 +25,10 @@ class PCBTable {
 		PCBTable();
 
 		// Add the supplied PCB instance to the table
-		void add(PCB);
+		void insertProc(PCB*);
+		// Retrieve a PCB in the table by its index
+		PCB* getPCB(int);
+		// Remove and deallocate all processes in the table
+		void clear();
 
 };

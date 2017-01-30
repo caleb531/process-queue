@@ -9,7 +9,7 @@ using namespace std;
 class ReadyQueue {
     protected:
 
-    //Maximum number of processes to hold 
+    //Maximum number of processes to hold
     static const int MAX_PROCESS_COUNT = 20;
 
     //Minimum heap of all ready processes
@@ -26,7 +26,7 @@ class ReadyQueue {
     //Swaps the processes at the indicated indexes
     void swapNodes(int a, int b);
 
-    public: 
+    public:
     ReadyQueue();
 
     //Insert a PCB pointer to the heap
@@ -34,7 +34,7 @@ class ReadyQueue {
 
     //Remove the pointer pointing the the highest priority process
     PCB* removeHighestProc();
-    
+
     //Displays the heap in array order
     void displayQueue();
 };
