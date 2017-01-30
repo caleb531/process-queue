@@ -36,11 +36,13 @@ ReadyQueue::ReadyQueue(){
 
 void ReadyQueue::insertProc(PCB *inserted){
     if(size >= MAX_PROCESS_COUNT){
-        //TODO: Determine behavior for adding process to filled queue
+        //If queue is already full, do nothing
+        return;
     }
 
     heap[size] = inserted;
     int i = size;
+    size++;
 
     //Bubble up the new process
     while(i > 0){
@@ -53,13 +55,12 @@ void ReadyQueue::insertProc(PCB *inserted){
             break;
         }
     }
-
-    size++;
 }
 
 PCB* ReadyQueue::removeHighestProc(){
     if(size == 0){
-        //TODO: Determine behavior for removing from empty queue
+        //If empty, return pointer pointing to nowhere
+        return NULL;
     }
 
     PCB* result = heap[0];
@@ -68,32 +69,38 @@ PCB* ReadyQueue::removeHighestProc(){
     heap[0] = heap[size-1];
     size--;
 
-    int pos = 0;
-    bool notFinished = true;
+    //The index that is currently being checked
+    int currentIndex = 0;
 
     //Sift the root down
-    while(notFinished){
-        int leftChild = getLeftIndex(pos);
-        int rightChild = getRightIndex(pos);
+    while(true){
+        int leftChild = getLeftIndex(currentIndex);
+        int rightChild = getRightIndex(currentIndex);
         int smallest;
 
-        if(leftChild < size && heap[pos]->getPriority() > heap[leftChild]->getPriority()){
+        //Determine the smallest value between currentIndex vs leftChild
+        //If leftChild doesn't exist, smallest is set to currentIndex
+        if(leftChild < size && heap[currentIndex]->getPriority() > heap[leftChild]->getPriority()){
             smallest = leftChild;
         }
         else{
-            smallest = pos;
+            smallest = currentIndex;
         }
 
+        //Determine the smallest value between currentIndex/parent(determined before) vs rightChild
+        //If rightChild doesn't exist, smallest is kept as determined before
         if(rightChild < size && heap[smallest]->getPriority() > heap[rightChild]->getPriority()){
             smallest = rightChild;
         }
 
-        if(smallest != pos){
-            swapNodes(pos, smallest);
-            pos = smallest;
+        //If the smallest was one of the children, swap
+        if(smallest != currentIndex){
+            swapNodes(currentIndex, smallest);
+            currentIndex = smallest;
         }
         else{
-            notFinished = false;
+            //Otherwise the smallest was the current index, or left and right children don't exist, so sifting is done
+            break;
         }
     }
 
