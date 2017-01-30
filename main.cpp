@@ -15,7 +15,7 @@ void test1() {
 	PCB* pcb;
 	for (int i = 1; i <= 20; i++) {
 		pcb = new PCB(i, i);
-		pcb_table.add(pcb);
+		pcb_table.insertProc(pcb);
 	}
 	cout << "Adding processes 5, 1, 8, and 11..." << endl;
 	q1.insertProc(pcb_table.getPCB(5));

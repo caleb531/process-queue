@@ -12,7 +12,7 @@ PCBTable::PCBTable() {
 }
 
 // Add the supplied PCB instance to the table
-void PCBTable::add(PCB* added) {
+void PCBTable::insertProc(PCB* added) {
 	// Only add process if there is space in the table
 	if ((process_count + 1) < MAX_PROCESS_COUNT) {
 		process_count++;
