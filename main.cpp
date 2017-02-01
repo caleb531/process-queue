@@ -81,6 +81,8 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1){
 			if(removed != NULL){
 				int posRemoved = pcb_table.getIndex(removed->getID());
 				table_order.push_back(posRemoved);
+				//Keep the order truly random
+				random_shuffle(table_order.begin(), table_order.end());
 			}
 		}
 		else{
