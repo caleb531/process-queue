@@ -28,6 +28,11 @@ class PCBTable {
 		void insertProc(PCB*);
 		// Retrieve a PCB in the table by its index
 		PCB* getPCB(int);
+
+		//Returns the index of a PCB accoring to its ID 
+		//Returns -1 if a PCB with the specified ID doesn't exist
+		int getIndex(int PCBID);
+
 		// Remove and deallocate all processes in the table
 		void clear();
 

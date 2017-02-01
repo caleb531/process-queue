@@ -30,6 +30,10 @@ int PCB::getPriority() {
 	return priority;
 }
 
+void PCB::setPriority(int newPriority){
+	this->priority = newPriority;
+}
+
 void PCB::markAsReady() {
 	this->state = READY;
 }

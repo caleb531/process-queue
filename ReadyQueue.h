@@ -34,6 +34,10 @@ class ReadyQueue {
 	void insertProc(PCB* inserted);
 	// Remove the highest priority process from the queue
 	PCB* removeHighestProc();
+
+	//Returns current size
+	int getSize();
+	
 	// Display each node in the queue, one node per line, in array-order
 	void displayQueue();
 };

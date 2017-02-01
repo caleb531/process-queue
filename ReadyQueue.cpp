@@ -105,6 +105,10 @@ PCB* ReadyQueue::removeHighestProc(){
 	return result;
 }
 
+int ReadyQueue::getSize(){
+	return size;
+}
+
 void ReadyQueue::displayQueue(){
 	for(int i = 0; i < size; i++){
 		cout <<"Process " << heap[i]->getID() << " Priority " << heap[i]->getPriority() << endl;
