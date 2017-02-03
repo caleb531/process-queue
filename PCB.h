@@ -32,6 +32,10 @@ class PCB {
 		int getID();
 		// Retrieve the current priority of the process
 		int getPriority();
+
+		// Set a new priority for the PCB
+		void setPriority(int newPriority);
+
 		// Indicate the process is now ready (meaning it has been enqueued)
 		void markAsReady();
 		// Indicate the process is currently running (meaning it has been

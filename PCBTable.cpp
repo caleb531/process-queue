@@ -13,14 +13,26 @@ PCBTable::PCBTable() {
 
 void PCBTable::insertProc(PCB* added) {
 	// Only add process if there is space in the table
-	if ((process_count + 1) < MAX_PROCESS_COUNT) {
-		process_count++;
+	if (process_count < MAX_PROCESS_COUNT) {
 		processes[process_count] = added;
+		process_count++;
 	}
 }
 
 PCB* PCBTable::getPCB(int i) {
 	return processes[i];
+}
+
+int PCBTable::getIndex(int PCBID){
+	int result = -1;
+	for(int i = 0; i < MAX_PROCESS_COUNT; i++){
+		if(processes[i]->getID() == PCBID){
+			result = i;
+			break;
+		}
+	}
+
+	return result;
 }
 
 void PCBTable::clear() {
