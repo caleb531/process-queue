@@ -22,10 +22,10 @@ PCB* PCBTable::getPCB(int i) {
 	return processes[i];
 }
 
-int PCBTable::getIndex(int PCBID){
+int PCBTable::getIndex(int PCBID) {
 	int result = -1;
-	for(int i = 0; i < MAX_PROCESS_COUNT; i++){
-		if(processes[i]->getID() == PCBID){
+	for (int i = 0; i < MAX_PROCESS_COUNT; i++) {
+		if (processes[i]->getID() == PCBID) {
 			result = i;
 			break;
 		}
