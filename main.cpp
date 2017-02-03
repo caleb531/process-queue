@@ -11,6 +11,13 @@
 #include "ReadyQueue.h"
 using namespace std;
 
+// Get the current time as a UNIX timestampts (in seconds)
+double getCurrentTime() {
+	timeval timePtr;
+	gettimeofday(&timePtr, NULL);
+	return timePtr.tv_sec + (timePtr.tv_usec / 1000000.0);
+}
+
 void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	cout << "Starting test 1!" << endl;
 	cout << "Adding 20 processes to table..." << endl;
@@ -72,9 +79,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 	}
 
 	// Begin time profiling by recording start time
-	timeval currentTime;
-	gettimeofday(&currentTime, NULL);
-	double startTime = currentTime.tv_sec + (currentTime.tv_usec / 1000000.0);
+	double startTime = getCurrentTime();
 	for (int i = 0; i < 1000000; i++) {
 		int choice = rand() % 2;
 
@@ -106,8 +111,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 		}
 	}
 	// Finish time profiling by recording end time and taking the difference
-	gettimeofday(&currentTime, NULL);
-	double endTime = currentTime.tv_sec + (currentTime.tv_usec / 1000000.0);
+	double endTime = getCurrentTime();
 	cout << "Duration: " << ((endTime - startTime) * 1000) << " ms" << endl;
 	q1.displayQueue();
 }
