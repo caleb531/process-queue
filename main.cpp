@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <deque>
+#include <sys/time.h>
 #include "PCB.h"
 #include "PCBTable.h"
 #include "ReadyQueue.h"
@@ -69,6 +70,10 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1){
 		table_order.pop_front();
 	}
 
+	// Begin time profiling by recording start time
+	timeval currentTime;
+	gettimeofday(&currentTime, NULL);
+	double startTime = currentTime.tv_sec + (currentTime.tv_usec / 1000000.0);
 	for(int i = 0; i < 1000000; i++){
 		int choice = rand() % 2;
 
@@ -98,6 +103,10 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1){
 			//Else if all processes are in the queue, do nothing
 		}
 	}
+	// Finish time profiling by recording end time and taking the difference
+	gettimeofday(&currentTime, NULL);
+	double endTime = currentTime.tv_sec + (currentTime.tv_usec / 1000000.0);
+	cout << "Execution duration: " << (endTime - startTime) << " seconds" << endl;
 	q1.displayQueue();
 }
 
