@@ -1,6 +1,5 @@
 /**
  * PCB Table definition
- * Caleb Evans
  */
 #pragma once
 #include "PCB.h"

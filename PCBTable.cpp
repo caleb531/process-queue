@@ -1,6 +1,5 @@
 /**
  * PCB Table implementation
- * Caleb Evans
  */
 #include <cstddef>
 #include "PCBTable.h"

@@ -1,6 +1,5 @@
 /**
  * Process control block implementation
- * Caleb Evans
  */
 #include "PCB.h"
 using namespace std;

@@ -1,6 +1,5 @@
 /**
  * Process control block definition
- * Caleb Evans
  */
 #pragma once
 
