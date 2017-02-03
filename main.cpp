@@ -64,7 +64,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 		int pos = table_order.front();
 		int randomPriority = rand() % 50 + 1;
 
-		PCB* process = pcb_table.getPCB(pos);
+		PCB* process = pcb_table.getPCB(pos + 1);
 		process->setPriority(randomPriority);
 		q1.insertProc(process);
 
@@ -97,7 +97,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 
 				// Assign a random new priority [1-50] and insert it into the
 				// queue
-				PCB* process = pcb_table.getPCB(pos);
+				PCB* process = pcb_table.getPCB(pos + 1);
 				process->setPriority(randomPriority);
 				q1.insertProc(process);
 				table_order.pop_front();

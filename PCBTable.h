@@ -25,7 +25,7 @@ class PCBTable {
 
 		// Add the supplied PCB instance to the table
 		void insertProc(PCB*);
-		// Retrieve a PCB in the table by its index
+		// Retrieve a PCB in the table by its ID (1 through 20)
 		PCB* getPCB(int);
 
 		//Returns the index of a PCB accoring to its ID

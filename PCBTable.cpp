@@ -19,7 +19,7 @@ void PCBTable::insertProc(PCB* added) {
 }
 
 PCB* PCBTable::getPCB(int i) {
-	return processes[i];
+	return processes[i - 1];
 }
 
 int PCBTable::getIndex(int PCBID) {
