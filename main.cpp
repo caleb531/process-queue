@@ -108,7 +108,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 	// Finish time profiling by recording end time and taking the difference
 	gettimeofday(&currentTime, NULL);
 	double endTime = currentTime.tv_sec + (currentTime.tv_usec / 1000000.0);
-	cout << "Execution duration: " << (endTime - startTime) << " seconds" << endl;
+	cout << "Duration: " << ((endTime - startTime) * 1000) << " ms" << endl;
 	q1.displayQueue();
 }
 
