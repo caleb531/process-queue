@@ -1,6 +1,6 @@
 #!/usr/bin/make
 
-CC = g++
+CC = g++ -O2
 SRC = PCB.cpp PCBTable.cpp ReadyQueue.cpp main.cpp
 PROG = process-queue.out
 
