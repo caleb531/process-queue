@@ -48,18 +48,19 @@ void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 
 void test2(PCBTable &pcb_table, ReadyQueue &q1){
 	cout << "Starting test 2!" << endl;
-	//Seed random number generator
+	// Seed random number generator
 	srand(time(NULL));
-	//table_order contains the indexes of all processes not in the queue
+	// table_order contains the indexes of all processes not in the queue
 	deque<int> table_order;
 	for(int i = 0; i < 20; i++){
 		table_order.push_back(i);
 	}
-	//Sets up a random order to access processes in
+	// Sets up a random order to access processes in
 	random_shuffle(table_order.begin(), table_order.end());
 
 	for(int i = 0; i < 10; i++){
-		//Choose a PCB from the table at random and assign a random priority from 1 throguh 50
+		// Choose a PCB from the table at random and assign a random priority
+		// from 1 throguh 50
 		int pos = table_order.front();
 		int randomPriority = rand() % 50 + 1;
 
@@ -78,29 +79,30 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1){
 		int choice = rand() % 2;
 
 		if(choice == 0){
-			//Remove a PCB from the queue and mark it as not in the queue
+			// Remove a PCB from the queue and mark it as not in the queue
 			PCB* removed = q1.removeHighestProc();
 
 			if(removed != NULL){
 				int posRemoved = pcb_table.getIndex(removed->getID());
 				table_order.push_back(posRemoved);
-				//Keep the order truly random
+				// Keep the order truly random
 				random_shuffle(table_order.begin(), table_order.end());
 			}
 		}
 		else{
 			if(table_order.size() != 0){
-				//Choocse a process not in the queue at random
+				// Choocse a process not in the queue at random
 				int pos = table_order.front();
 				int randomPriority = rand() % 50 + 1;
 
-				//Assign a random new priority [1-50] and insert it into the queue
+				// Assign a random new priority [1-50] and insert it into the
+				// queue
 				PCB* process = pcb_table.getPCB(pos);
 				process->setPriority(randomPriority);
 				q1.insertProc(process);
 				table_order.pop_front();
 			}
-			//Else if all processes are in the queue, do nothing
+			// Else if all processes are in the queue, do nothing
 		}
 	}
 	// Finish time profiling by recording end time and taking the difference
