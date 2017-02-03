@@ -76,14 +76,11 @@ PCB* ReadyQueue::removeHighestProc() {
 	while (true) {
 		int leftChild = getLeftIndex(currentIndex);
 		int rightChild = getRightIndex(currentIndex);
-		int smallest;
+		int smallest = currentIndex;
 
 		// Find the smallest of the two child nodes
 		if (leftChild < size && heap[currentIndex]->getPriority() > heap[leftChild]->getPriority()) {
 			smallest = leftChild;
-		}
-		else {
-			smallest = currentIndex;
 		}
 		if (rightChild < size && heap[smallest]->getPriority() > heap[rightChild]->getPriority()) {
 			smallest = rightChild;
