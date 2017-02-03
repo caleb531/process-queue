@@ -38,13 +38,11 @@ void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	q1.insertProc(pcb_table.getPCB(9));
 	q1.displayQueue();
 
-	int queueSize = q1.getSize();
-	for(int i = 0; i < queueSize; i++){
+	while (!q1.isEmpty()) {
 		cout << "Removing highest-priority process..." << endl;
 		q1.removeHighestProc();
 		q1.displayQueue();
 	}
-	
 }
 
 void test2(PCBTable &pcb_table, ReadyQueue &q1){

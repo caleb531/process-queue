@@ -105,8 +105,8 @@ PCB* ReadyQueue::removeHighestProc(){
 	return result;
 }
 
-int ReadyQueue::getSize(){
-	return size;
+bool ReadyQueue::isEmpty(){
+	return (size == 0);
 }
 
 void ReadyQueue::displayQueue(){
