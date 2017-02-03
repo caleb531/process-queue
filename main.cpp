@@ -81,6 +81,8 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 	// Begin time profiling by recording start time
 	double startTime = getCurrentTime();
 	for (int i = 0; i < 1000000; i++) {
+		// Random value which determines if this iteration will add processes
+		// (value of 1) or remove processes (value of 0) from the queue
 		int choice = rand() % 2;
 
 		if (choice == 0) {
@@ -95,6 +97,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 			}
 		}
 		else {
+			// Otherwise, add PCB to queue
 			if (table_order.size() != 0) {
 				// Choocse a process not in the queue at random
 				int pos = table_order.front();
