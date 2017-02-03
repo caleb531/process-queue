@@ -29,7 +29,7 @@ class PCBTable {
 		// Retrieve a PCB in the table by its index
 		PCB* getPCB(int);
 
-		//Returns the index of a PCB accoring to its ID 
+		//Returns the index of a PCB accoring to its ID
 		//Returns -1 if a PCB with the specified ID doesn't exist
 		int getIndex(int PCBID);
 
