@@ -1,6 +1,13 @@
 /**
  * CS 433 Programming Assignment 1: Priority Queue for Processes
  * Caleb Evans, Jonathan Tapia
+ * February 3, 2017
+ * DESCRIPTION
+ * This program includes a full C++ priority queue implementation, as well as a
+ * series of tests to verify its behavior.
+ * HOW TO RUN
+ * To compile and run the program, run the `make` command in your favorite
+ * shell; the compiled executable will automatically run after compilation.
  */
 #include <iostream>
 #include <algorithm>
