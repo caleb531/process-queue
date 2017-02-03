@@ -121,6 +121,8 @@ int main() {
 	ReadyQueue q1;
 
 	test1(pcb_table, q1);
+	// Print blank line between tests for readability
+	cout << endl;
 	test2(pcb_table, q1);
 
 	pcb_table.clear();
