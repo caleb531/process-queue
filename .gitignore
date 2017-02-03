@@ -30,3 +30,6 @@
 
 # Other
 .vscode/
+
+# Deployment environment configuration
+.env
