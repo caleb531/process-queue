@@ -25,6 +25,7 @@ double getCurrentTime() {
 	return timePtr.tv_sec + (timePtr.tv_usec / 1000000.0);
 }
 
+// Run the first test according to the instructions given in the assignment
 void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	cout << "Starting test 1!" << endl;
 	cout << "Adding 20 processes to table..." << endl;
@@ -60,6 +61,7 @@ void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	}
 }
 
+// Run the second test according to the instructions given in the assignment
 void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 	cout << "Starting test 2!" << endl;
 	// Seed random number generator
