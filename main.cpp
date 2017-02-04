@@ -1,7 +1,7 @@
 /**
  * CS 433 Programming Assignment 1: Priority Queue for Processes
  * Caleb Evans, Jonathan Tapia
- * February 3, 2017
+ * February 4, 2017
  * DESCRIPTION
  * This program includes a full C++ priority queue implementation, as well as a
  * series of tests to verify its behavior.
