@@ -68,22 +68,22 @@ void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	}
 }
 
-// Run the second test according to the instructions given in the assignment
-void test2(PCBTable &pcb_table, ReadyQueue &q1) {
-	cout << "Starting test 2!" << endl;
-	// Seed random number generator
-	srand(time(NULL));
-	// table_order contains the indexes of all processes not in the queue
+// Initialize the table order array (which contains the indexes of all processes
+// not in the queue)
+deque<int> initializeTableOrder() {
 	deque<int> table_order;
 	for (int i = 0; i < 20; i++) {
 		table_order.push_back(i);
 	}
 	// Sets up a random order to access processes in
 	random_shuffle(table_order.begin(), table_order.end());
+	return table_order;
+}
 
+// Choose 10 processes at random from the table and assign a random priority
+// from 1 though 50
+inline void randomizePriorities(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
 	for (int i = 0; i < 10; i++) {
-		// Choose a PCB from the table at random and assign a random priority
-		// from 1 throguh 50
 		int pos = table_order.front();
 		int randomPriority = rand() % 50 + 1;
 
@@ -93,40 +93,54 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 
 		table_order.pop_front();
 	}
+}
 
+// Remove a PCB from the queue and randomize the order of the PCB table
+inline void dequeueAndRandomize(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
+	PCB* removed = q1.removeHighestProc();
+	if (removed != NULL) {
+		int posRemoved = pcb_table.getIndex(removed->getID());
+		table_order.push_back(posRemoved);
+		// Keep the order truly random
+		random_shuffle(table_order.begin(), table_order.end());
+	}
+}
+
+// Retrieve a random process not currently in the queue, assign it a random
+// priority, and add it to the queue
+inline void enqueueRandomPriorityProcess(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
+	if (table_order.size() != 0) {
+		// Choocse a process not in the queue at random
+		int pos = table_order.front();
+		int randomPriority = rand() % 50 + 1;
+		// Assign a random new priority [1-50] and insert it into the queue
+		PCB* process = pcb_table.getPCB(pos + 1);
+		process->setPriority(randomPriority);
+		q1.insertProc(process);
+		table_order.pop_front();
+	}
+	// Else if all processes are in the queue, do nothing
+}
+
+// Run the second test according to the instructions given in the assignment
+void test2(PCBTable &pcb_table, ReadyQueue &q1) {
+	cout << "Starting test 2!" << endl;
+	// Seed random number generator
+	srand(time(NULL));
+	deque<int> table_order = initializeTableOrder();
+	randomizePriorities(pcb_table, table_order, q1);
 	// Begin time profiling by recording start time
 	double startTime = getCurrentTime();
 	for (int i = 0; i < 1000000; i++) {
 		// Random value which determines if this iteration will add processes
 		// (value of 1) or remove processes (value of 0) from the queue
 		int choice = rand() % 2;
-
 		if (choice == 0) {
-			// Remove a PCB from the queue and mark it as not in the queue
-			PCB* removed = q1.removeHighestProc();
-
-			if (removed != NULL) {
-				int posRemoved = pcb_table.getIndex(removed->getID());
-				table_order.push_back(posRemoved);
-				// Keep the order truly random
-				random_shuffle(table_order.begin(), table_order.end());
-			}
+			dequeueAndRandomize(pcb_table, table_order, q1);
 		}
 		else {
 			// Otherwise, add PCB to queue
-			if (table_order.size() != 0) {
-				// Choocse a process not in the queue at random
-				int pos = table_order.front();
-				int randomPriority = rand() % 50 + 1;
-
-				// Assign a random new priority [1-50] and insert it into the
-				// queue
-				PCB* process = pcb_table.getPCB(pos + 1);
-				process->setPriority(randomPriority);
-				q1.insertProc(process);
-				table_order.pop_front();
-			}
-			// Else if all processes are in the queue, do nothing
+			enqueueRandomPriorityProcess(pcb_table, table_order, q1);
 		}
 	}
 	// Finish time profiling by recording end time and taking the difference
