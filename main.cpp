@@ -82,7 +82,7 @@ deque<int> initializeTableOrder() {
 
 // Choose 10 processes at random from the table and assign a random priority
 // from 1 though 50
-inline void randomizePriorities(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
+void randomizePriorities(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
 	for (int i = 0; i < 10; i++) {
 		int pos = table_order.front();
 		int randomPriority = rand() % 50 + 1;
