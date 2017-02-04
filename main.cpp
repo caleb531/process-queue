@@ -25,28 +25,37 @@ double getCurrentTime() {
 	return timePtr.tv_sec + (timePtr.tv_usec / 1000000.0);
 }
 
+// Populate the given PCB table with the given number of processes (where ID =
+// priority = i)
+void populateTable(PCBTable &pcb_table, int process_count) {
+	for (int i = 1; i <= process_count; i++) {
+		PCB* pcb = new PCB(i, i);
+		pcb_table.insertProc(pcb);
+	}
+}
+
+// Dequeue the highest-priority process in the given queue and display the new
+// contents of the queue
+void dequeueAndDisplay(ReadyQueue &q1) {
+	cout << "Dequeuing highest-priority process..." << endl;
+	q1.removeHighestProc();
+	q1.displayQueue();
+}
+
 // Run the first test according to the instructions given in the assignment
 void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	cout << "Starting test 1!" << endl;
 	cout << "Adding 20 processes to table..." << endl;
-	for (int i = 1; i <= 20; i++) {
-		PCB* pcb = new PCB(i, i);
-		pcb_table.insertProc(pcb);
-	}
-
-	cout << "Adding processes 5, 1, 8, and 11..." << endl;
+	populateTable(pcb_table, 20);
+	cout << "Enqueuing processes 5, 1, 8, and 11..." << endl;
 	q1.insertProc(pcb_table.getPCB(5));
 	q1.insertProc(pcb_table.getPCB(1));
 	q1.insertProc(pcb_table.getPCB(8));
 	q1.insertProc(pcb_table.getPCB(11));
 	q1.displayQueue();
-	cout << "Removing highest-priority process..." << endl;
-	q1.removeHighestProc();
-	q1.displayQueue();
-	cout << "Removing highest-priority process..." << endl;
-	q1.removeHighestProc();
-	q1.displayQueue();
-	cout << "Adding processes 3, 7, 2, 12, and 9..." << endl;
+	dequeueAndDisplay(q1);
+	dequeueAndDisplay(q1);
+	cout << "Enqueuing processes 3, 7, 2, 12, and 9..." << endl;
 	q1.insertProc(pcb_table.getPCB(3));
 	q1.insertProc(pcb_table.getPCB(7));
 	q1.insertProc(pcb_table.getPCB(2));
@@ -55,9 +64,7 @@ void test1(PCBTable &pcb_table, ReadyQueue &q1) {
 	q1.displayQueue();
 
 	while (!q1.isEmpty()) {
-		cout << "Removing highest-priority process..." << endl;
-		q1.removeHighestProc();
-		q1.displayQueue();
+		dequeueAndDisplay(q1);
 	}
 }
 
