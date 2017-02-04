@@ -97,7 +97,7 @@ void randomizePriorities(PCBTable &pcb_table, deque<int> &table_order, ReadyQueu
 
 // Remove a PCB from the queue and mark it as not in the queue (by adding its
 // index to table_order)
-inline void dequeueAndMoveProcess(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
+inline void dequeueAndMarkProcess(PCBTable &pcb_table, deque<int> &table_order, ReadyQueue &q1) {
 	PCB* removed = q1.removeHighestProc();
 	if (removed != NULL) {
 		int posRemoved = pcb_table.getIndex(removed->getID());
@@ -135,7 +135,7 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 		// (value of 1) or remove processes (value of 0) from the queue
 		int choice = rand() % 2;
 		if (choice == 0) {
-			dequeueAndMoveProcess(pcb_table, table_order, q1);
+			dequeueAndMarkProcess(pcb_table, table_order, q1);
 		}
 		else {
 			// Otherwise, add PCB to queue
