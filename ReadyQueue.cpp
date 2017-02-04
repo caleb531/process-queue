@@ -107,7 +107,11 @@ bool ReadyQueue::isEmpty() {
 }
 
 void ReadyQueue::displayQueue() {
-	for (int i = 0; i < size; i++) {
-		cout <<"Process " << heap[i]->getID() << " Priority " << heap[i]->getPriority() << endl;
+	if (isEmpty()) {
+		cout << "Queue is empty" << endl;
+	} else {
+		for (int i = 0; i < size; i++) {
+			cout <<"Process " << heap[i]->getID() << " Priority " << heap[i]->getPriority() << endl;
+		}
 	}
 }
