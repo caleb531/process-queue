@@ -8,6 +8,9 @@
  * HOW TO RUN
  * To compile and run the program, run the `make` command in your favorite
  * shell; the compiled executable will automatically run after compilation.
+ * KNOWN ASSUMPTIONS
+ * The program assumes that there are no more than 20 processes in the PCB table
+ * or in the ready queue
  */
 #include <iostream>
 #include <algorithm>
