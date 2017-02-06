@@ -129,6 +129,9 @@ void test2(PCBTable &pcb_table, ReadyQueue &q1) {
 	cout << "Starting test 2!" << endl;
 	// Seed random number generator
 	srand(time(NULL));
+	// A deque guarantees O(1) insertions/deletions from either end of the
+	// sequence, which helps to minimize the overhead of the loop below (as the
+	// efficiency of the ReadyQueue is what's being profiled here)
 	deque<int> table_order = initializeTableOrder();
 	randomizePriorities(pcb_table, table_order, q1);
 	// Begin time profiling by recording start time
