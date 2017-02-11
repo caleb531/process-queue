@@ -6,8 +6,8 @@
  * This program includes a full C++ priority queue implementation, as well as a
  * series of tests to verify its behavior.
  * HOW TO RUN
- * To compile and run the program, run the `make` command in your favorite
- * shell; the compiled executable will automatically run after compilation.
+ * Run `make` to compile the program, then run `./process-queue.out` to execute
+ * the compiled program
  * KNOWN ASSUMPTIONS
  * The program assumes that there are no more than 20 processes in the PCB table
  * or in the ready queue

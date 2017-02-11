@@ -4,10 +4,6 @@ CC = g++ -O2
 SRC = PCB.cpp PCBTable.cpp ReadyQueue.cpp main.cpp
 PROG = process-queue.out
 
-# Execute program (the default task when calling `make`)
-run: build
-	./$(PROG)
-
 # Clean project and compile program
 build: clean $(PROG)
 
