@@ -2,6 +2,10 @@
 
 *Copyright 2017 Caleb Evans, Jonathan Tapia*
 
+This is an implementation of a OS process queue for CS 433 (Operating Systems)
+at CSU San Marcos. The main program consists of several tests which benchmark
+the performance of the underlying priority queue implementation.
+
 ## How to run
 
 Run `make` to compile the program, then run `./process-queue.out` to execute the
